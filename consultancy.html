@@ -41,19 +41,19 @@
         <h1>We <span>Focused</span> on</h1>
         <h3>partnering with innovative mid-size companies. Our tailored strategies drive revenue growth through operational efficiency, market expansion, and digital transformation </h3>
         <div class="consult-about-info">
-            <div class="consult-info-box">
+            <div id="con-1" class="consult-info-box zoom-in">
                 <h2>Financial Consultancy</h2>
                 <li><p>Detaliled financial consultancy</p></li>
                 <li><p>Personalized budgeting guidance</p></li>
                 <li><p>Access to market insights</p></li>
             </div>
-            <div class="consult-info-box">
+            <div id="con-2" class="consult-info-box zoom-in">
                 <h2>Portfolio building</h2>
                 <li><p>Investment portfolio analysis</p></li>
                 <li><p>Retirement planning strategies</p></li>
                 <li><p>Access to market insights</p></li>
             </div>
-            <div class="consult-info-box">
+            <div id="con-3" class="consult-info-box zoom-in">
                 <h2>Wealth management</h2>
                 <li><p>Customized investment strategies</p></li>
                 <li><p>Tax optimization strategies</p></li>
@@ -66,7 +66,7 @@
         <h1>OUR CLIENTS KNOW</h1>
         <h2><span>In today's competitive landscape,</span><br> strategic partnerships are key</h2>
         <p>We collaborate with forward-thinking businesses to unlock potential, optimize processes, and accelerate growth. Our expertise spans various industries, offering tailored solutions that drive innovation, enhance operational efficiency, and expand market reach. By leveraging cutting-edge technologies and data-driven insights, we help our partners stay ahead of the curve and achieve sustainable success. </p>
-        <div class="consult-num">
+        <div id="consult-num" class="consult-num slide-up">
             <div class="num">
                 <div class="counter" data-target="198">0</div>
                 <p>Clients</p>
@@ -88,7 +88,7 @@
     <div class="final-pic">We have invested $2.4 billion in 150 transactions <br>
         across 11 countries”</div>
     <div class="consult-final">
-        <div class="final-form">
+        <div id="final-form" class="final-form slide-up">
             <div class="small-form">
                 <div class="right-input">
                     <input type="text" placeholder="First Name">
@@ -111,7 +111,7 @@
                 <textarea placeholder="Your message" name="" id="" cols="30" rows="10"></textarea>
             </div>
         </div>
-        <div class="final-info">
+        <div id="final-info" class="final-info slide-down">
             <div class="final-info-top">
                 <h1>Get in Touch</h1>
                 <h3>PWC Towers Delta Corner Westlands Nairobi <br> Kenya</h3>
@@ -160,25 +160,53 @@
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          const counters = document.querySelectorAll(".counter");
-      
-          counters.forEach((counter) => {
-            const target = +counter.getAttribute("data-target"); // Get target number
-            let count = 0;
-            const increment = target / 100; // Speed control (smaller value = slower)
-      
-            const updateCounter = () => {
-              if (count < target) {
-                count += increment;
-                counter.innerText = Math.floor(count);
-                requestAnimationFrame(updateCounter); // Smooth animation
-              } else {
-                counter.innerText = target; // Ensure the final value is accurate
-              }
-            };
-      
-            updateCounter();
-          });
+            const counters = document.querySelectorAll(".counter");
+        
+            counters.forEach((counter) => {
+                const target = +counter.getAttribute("data-target"); // Get target number
+                let count = 0;
+                const increment = target / 100; // Speed control (smaller value = slower)
+        
+                const updateCounter = () => {
+                if (count < target) {
+                    count += increment;
+                    counter.innerText = Math.floor(count);
+                    requestAnimationFrame(updateCounter); // Smooth animation
+                } else {
+                    counter.innerText = target; // Ensure the final value is accurate
+                }
+                };
+        
+                updateCounter();
+            });
+            });
+            const pages = [
+                document.getElementById("consult-num"),
+                document.getElementById("con-1"),
+                document.getElementById("con-2"),
+                document.getElementById("con-3"),
+                document.getElementById("final-form"),
+                document.getElementById("final-info")
+
+            ]
+
+        
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }else{
+                        entry.target.classList.remove('active')
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        pages.forEach(page => {
+            observer.observe(page);
         });
       </script>
 

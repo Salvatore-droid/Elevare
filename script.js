@@ -1,20 +1,63 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const aboutImages = document.querySelector(".about-images");
+document.addEventListener("DOMContentLoaded", () => {
+    const pages = [
+        document.getElementById("about-cnt"),
+        document.getElementById("img"),
+        document.getElementById("about-info"), 
+        document.getElementById("image-box-1"),
+        document.getElementById("image-box-2"),
+        document.getElementById("image-box-3"),
+        document.getElementById("image-box-4"),
+        document.getElementById("image-box-5"),
+        document.getElementById("image-box-6"),
+        document.getElementById("news-top"),
+        document.getElementById("news-bottom"),
+        document.getElementById("quiz"),
+        document.getElementById("circle"),
+        document.getElementById("consult-about"),
+        document.getElementById("con-1"),
+        document.getElementById("con-2"),
+        document.getElementById("con-3")
 
-  const observer = new IntersectionObserver(
-      (entries) => {
-          entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                  aboutImages.classList.add("active"); // Add active class when in view
-              } else {
-                  aboutImages.classList.remove("active"); // Remove class when out of view
-              }
-          });
-      },
-      { threshold: 0.6 } // Trigger animation when 60% of the images are visible
-  );
+    ]
 
-  observer.observe(aboutImages);
+    
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }else{
+                    entry.target.classList.remove('active')
+                }
+            });
+        },
+        { threshold: 0.2 }
+    );
+
+    pages.forEach(page => {
+        observer.observe(page);
+    });
+
+    const counters = document.querySelectorAll(".counter");
+
+    counters.forEach((counter) => {
+        const target = +counter.getAttribute("data-target"); // Get target number
+        let count = 0;
+        const increment = target / 100; // Speed control (smaller value = slower)
+
+        const updateCounter = () => {
+        if (count < target) {
+            count += increment;
+            counter.innerText = Math.floor(count);
+            requestAnimationFrame(updateCounter); // Smooth animation
+        } else {
+            counter.innerText = target; // Ensure the final value is accurate
+        }
+        };
+
+        updateCounter();
+    });
 });
 
 
@@ -42,3 +85,5 @@ L.marker([1.2921, 36.8219]).addTo(map)
     // L.marker([1.2921, 36.8219]).addTo(map)
     //     .bindPopup('Nairobi, Kenya')
     //     .openPopup();
+
+

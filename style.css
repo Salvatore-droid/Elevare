@@ -21,6 +21,7 @@ body{
     animation: slide-down 3s forwards;
 
 }
+
  .logo-contact{
     display: flex;
     gap: 100px;
@@ -142,6 +143,15 @@ body{
         width: 300px;
         object-fit: cover;
         border-radius: 10px;
+    }
+    .about-info{
+        display: flex;
+        flex-direction: column;
+        gap: 15%;
+        h1{
+            color: rgb(0, 153, 255);
+        }
+
     }
     
 }
@@ -1117,7 +1127,7 @@ button{
 .work-side-nav{
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 100px;
 }
 
 .work-help{
@@ -1176,13 +1186,64 @@ button{
 
 
 
+/* service page style */
+
+
+
+
+
+
+
+
+.service-right{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    padding: 2%;
+    margin-left: 5%;
+    justify-content: center;    
+}
+
+.service-company{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    .service-info{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+    .service-info-2{
+        display: flex;
+        gap:30px;
+        flex-direction: row;
+    }
+    img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+    }
+    .img-service{
+        background-color: rgb(200, 200, 200);
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
 @keyframes slide-up {
     0%{
         opacity: 0;
-        transform: translateY(100px);
+        transform: translateY(200px);
     }
 
     100%{
@@ -1194,7 +1255,7 @@ button{
 @keyframes slide-down {
     0%{
         opacity: 0;
-        transform: translateY(-100px);
+        transform: translateY(-200px);
     }
 
     100%{
@@ -1218,7 +1279,7 @@ button{
 @keyframes slide-left {
     0%{
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(200px);
     }
 
     100%{
@@ -1230,7 +1291,7 @@ button{
 @keyframes slide-right {
     0%{
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-200px);
     }
 
     100%{
@@ -1249,4 +1310,56 @@ button{
     100%{
         background-position: center top;
     }
+}
+@keyframes Zoom-in {
+    0%{
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.slide-up, .Zoom-in, .zoom-in, .slide-right, .slide-left, .slide-down, .movebg{
+    opacity: 0;   
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+
+}
+
+.slide-up.active{
+    opacity: 1;
+    transform: translateY(0px);
+    animation: slide-up 1s ease-out forwards;    
+}
+.slide-right.active{
+    opacity: 1;
+    transform: translateX(0px);
+    animation: slide-right 1s forwards;
+}
+.slide-left.active{
+    opacity: 1;
+    transform: translateX(0px);
+    animation: slide-left 1s forwards;
+}
+
+.zoom-in.active{
+    opacity: 1;
+    transform: translateX(0px);
+    animation: zoom-in 1s forwards;
+}
+
+.Zoom-in.active{
+    opacity: 1;
+    transform: translateX(0px);
+    animation: zoom-in 2s forwards;
+}
+
+.slide-down.active{
+    opacity: 1;
+    transform: translateY(0px);
+    animation: slide-down 1s ease-out forwards;   
 }
